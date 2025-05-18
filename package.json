@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
+{
+  "name": "student-management",
+  "version": "1.0.0",
+  "scripts": {
+    "client": "npm start --prefix frontend",
+    "server": "node Backend/app.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  }
+}
