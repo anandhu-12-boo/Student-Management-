@@ -11,6 +11,8 @@ import Attendance from './components/Attendance';
 import Dashboard from './components/Dashboard';
 import ManagementCourses from './components/ManagementCourses';
 
+
+
 const App = () => {
   return (
     <Router>
@@ -26,6 +28,7 @@ const App = () => {
             <Route path="/attendance" element={<Attendance />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/courses" element={<ManagementCourses />} />
+          
           </Routes>
         </main>
         <Footer />
