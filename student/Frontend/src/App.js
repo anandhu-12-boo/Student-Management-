@@ -3,13 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/home';
-import AdminLogin from './pages/AdminLogin';
-import TeacherDashboard from './pages/TeacherDashboard';
-import StudentInfo from './components/StudentInfo';
-import TeacherInfo from './components/TeacherInfo';
-import Attendance from './components/Attendance';
-import Dashboard from './components/Dashboard';
-import ManagementCourses from './components/ManagementCourses';
+
 
 
 
