@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, Search, Menu, X, User, ChevronDown, LogOut, Settings, HelpCircle, Users, UserPlus, CheckSquare, Shield, GraduationCap, Trash2 } from 'lucide-react';
+import { Bell, Search, Menu, X, User, ChevronDown, LogOut, Settings, HelpCircle, Users, UserPlus, CheckSquare, Shield, GraduationCap, Trash2, Eye, EyeOff } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,6 +14,7 @@ const Navbar = () => {
   const [showAttendance, setShowAttendance] = useState(false);
   const [showStudents, setShowStudents] = useState(false); // State for showing students section
   const [rememberMe, setRememberMe] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // Sample faculty data
   const [facultyList, setFacultyList] = useState([
@@ -149,13 +150,13 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
-      <nav className={`${scrolled || user ? 'bg-white shadow-md text-gray-800' : 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white'} fixed w-full z-50 transition-all duration-300`}>
+      <nav className={`${scrolled || user ? 'bg-blue-600 shadow-md text-white' : 'bg-gradient-to-r from-indigo-900 via-purple-800 to-blue-900 text-white'} fixed w-full z-50 transition-all duration-300`}>
         <div className="max-w-screen-2xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             {/* Logo and Brand */}
             <div className="flex items-center">
               <a href="/" className="flex items-center group">
-                <span className={`text-2xl font-bold transition-all duration-300 transform group-hover:scale-105 ${scrolled || user ? 'text-blue-600' : 'text-white'}`}>
+                <span className={`text-2xl font-bold transition-all duration-300 transform group-hover:scale-105 ${scrolled || user ? 'text-white' : 'text-white'}`}>
                   EduMaster
                 </span>
               </a>
@@ -169,7 +170,7 @@ const Navbar = () => {
                   onClick={link.action || (() => {})}
                   className={`px-3 py-2 rounded text-sm font-medium transition-all duration-200 transform hover:scale-105 ${
                     scrolled || user
-                      ? 'hover:bg-gray-100 hover:text-blue-600'
+                      ? 'hover:bg-blue-500 hover:text-white'
                       : 'hover:bg-blue-500/20 hover:text-white'
                   }`}
                 >
@@ -181,15 +182,15 @@ const Navbar = () => {
             {/* Right side icons */}
             <div className="hidden md:flex items-center">
               {/* Search */}
-              <div className={`relative rounded-full overflow-hidden mr-2 transition-all duration-300 ${scrolled || user ? 'bg-gray-100' : 'bg-blue-500/20'} flex items-center hover:shadow-md`}>
+              <div className={`relative rounded-full overflow-hidden mr-2 transition-all duration-300 ${scrolled || user ? 'bg-blue-500/20' : 'bg-blue-500/20'} flex items-center hover:shadow-md`}>
                 <input
                   type="text"
                   placeholder="Search..."
                   className={`px-4 py-1 pr-8 text-sm focus:outline-none transition-all duration-300 focus:w-64 w-40 ${
-                    scrolled || user ? 'bg-gray-100 placeholder-gray-500' : 'bg-transparent placeholder-blue-100'
+                    scrolled || user ? 'bg-blue-500/20 placeholder-white' : 'bg-transparent placeholder-blue-100'
                   }`}
                 />
-                <Search className={`absolute right-2 h-4 w-4 transition-colors duration-300 ${scrolled || user ? 'text-gray-500' : 'text-blue-100'}`} />
+                <Search className={`absolute right-2 h-4 w-4 transition-colors duration-300 ${scrolled || user ? 'text-white' : 'text-blue-100'}`} />
               </div>
 
               {/* Notifications */}
@@ -198,7 +199,7 @@ const Navbar = () => {
                   <button
                     onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
                     className={`p-2 rounded-full relative transition-all duration-200 transform hover:scale-110 ${
-                      scrolled || user ? 'hover:bg-gray-100' : 'hover:bg-blue-500/20'
+                      scrolled || user ? 'hover:bg-blue-500/20' : 'hover:bg-blue-500/20'
                     }`}
                   >
                     <Bell className="h-5 w-5" />
@@ -320,14 +321,21 @@ const Navbar = () => {
                               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                           </div>
-                          <div>
+                          <div className="relative">
                             <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
                             <input
-                              type="password"
+                              type={showPassword ? "text" : "password"}
                               id="password"
                               required
                               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
+                            <button
+                              type="button"
+                              onClick={() => setShowPassword(!showPassword)}
+                              className="absolute inset-y-0 right-0 flex items-center pr-3"
+                            >
+                              {showPassword ? <EyeOff className="h-5 w-5 text-gray-500" /> : <Eye className="h-5 w-5 text-gray-500" />}
+                            </button>
                           </div>
                           <div className="flex items-center">
                             <input
@@ -381,7 +389,7 @@ const Navbar = () => {
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className={`inline-flex items-center justify-center p-2 rounded-md transition-colors duration-300 ${
-                  scrolled || user ? 'text-gray-600 hover:bg-gray-100' : 'text-blue-100 hover:bg-blue-500/20 hover:text-white'
+                  scrolled || user ? 'text-white hover:bg-blue-500/20' : 'text-blue-100 hover:bg-blue-500/20 hover:text-white'
                 }`}
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
